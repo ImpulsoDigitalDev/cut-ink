@@ -80,6 +80,29 @@
             color: #FFD700 !important;
             border-bottom: 2px solid #FFD700;
         }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .lightbox.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body class="bg-black text-white font-inter">
@@ -287,7 +310,8 @@
                     <p class="text-xl text-gray-300">Cortes modernos y servicios profesionales</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Services -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <div class="bg-black p-6 rounded-lg border border-gold">
                         <i class="fas fa-cut text-gold text-3xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gold mb-3">Cortes Modernos</h3>
@@ -309,8 +333,105 @@
                         <p class="text-gold font-semibold">Desde $90tt</p>
                     </div>
                 </div>
+
+                <!-- Gallery Section -->
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-playfair font-bold text-gold mb-4">Galería de Trabajos</h2>
+                    <p class="text-gray-300">Algunos de nuestros mejores cortes y estilos</p>
+                </div>
+
+                <!-- Photo Upload Instructions -->
+                <div class="bg-black border border-gold rounded-lg p-6 mb-8">
+                    <div class="text-center">
+                        <i class="fas fa-camera text-gold text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-gold mb-3">¿Cómo agregar tus fotos?</h3>
+                        <p class="text-gray-300 mb-4">Para mostrar fotos reales de tus trabajos:</p>
+                        <div class="text-left max-w-2xl mx-auto space-y-2 text-gray-400">
+                            <p>1. Sube tus fotos a un servicio como <span class="text-gold">Google Drive</span>, <span class="text-gold">Dropbox</span> o <span class="text-gold">Imgur</span></p>
+                            <p>2. Obtén el enlace público de cada imagen</p>
+                            <p>3. Reemplaza las URLs de ejemplo en el código con tus enlaces reales</p>
+                            <p>4. ¡Las fotos aparecerán automáticamente en la galería!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+                    <!-- Placeholder images - Replace with real photo URLs -->
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Corte+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cut text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Corte Moderno</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Barba+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Arreglo Barba</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Fade+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cut text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Fade Perfecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Cejas+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-eye text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Diseño Cejas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Corte+2')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cut text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Estilo Clásico</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Barba+2')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Barba Completa</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Undercut')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-cut text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Undercut</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Afeitado')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-user-tie text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Afeitado Clásico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="text-center mt-12">
+                <div class="text-center">
                     <button class="gradient-gold text-black px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all" onclick="showPage('contacto')">
                         Agenda tu Cita
                     </button>
@@ -328,7 +449,8 @@
                     <p class="text-xl text-gray-300">Arte personalizado en tu piel</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Services -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     <div class="bg-black p-6 rounded-lg border border-gold">
                         <i class="fas fa-font text-gold text-3xl mb-4"></i>
                         <h3 class="text-xl font-bold text-gold mb-3">Letras Personalizadas</h3>
@@ -350,8 +472,105 @@
                         <p class="text-gold font-semibold">Desde $90tt</p>
                     </div>
                 </div>
+
+                <!-- Gallery Section -->
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-playfair font-bold text-gold mb-4">Galería de Diseños</h2>
+                    <p class="text-gray-300">Nuestros trabajos más destacados en tatuajes</p>
+                </div>
+
+                <!-- Photo Upload Instructions -->
+                <div class="bg-black border border-gold rounded-lg p-6 mb-8">
+                    <div class="text-center">
+                        <i class="fas fa-camera text-gold text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold text-gold mb-3">¿Cómo agregar tus fotos?</h3>
+                        <p class="text-gray-300 mb-4">Para mostrar fotos reales de tus tatuajes:</p>
+                        <div class="text-left max-w-2xl mx-auto space-y-2 text-gray-400">
+                            <p>1. Sube tus fotos a un servicio como <span class="text-gold">Google Drive</span>, <span class="text-gold">Dropbox</span> o <span class="text-gold">Imgur</span></p>
+                            <p>2. Obtén el enlace público de cada imagen</p>
+                            <p>3. Reemplaza las URLs de ejemplo en el código con tus enlaces reales</p>
+                            <p>4. ¡Las fotos aparecerán automáticamente en la galería!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+                    <!-- Placeholder images - Replace with real photo URLs -->
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Letras+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-font text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Letras Cursivas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Nombre+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-signature text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Nombre Elegante</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Simbolo+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-heart text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Símbolo Minimalista</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Frase+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-quote-left text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Frase Inspiradora</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Dibujo+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-pen-nib text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Dibujo Pequeño</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Letras+2')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-font text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Tipografía Moderna</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Nombre+2')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-signature text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Nombre Artístico</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item bg-gray-800 aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('https://via.placeholder.com/400x400/1a1a1a/FFD700?text=Arte+1')">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-star text-gold text-3xl mb-2"></i>
+                                <p class="text-gold text-sm">Arte Personalizado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="text-center mt-12">
+                <div class="text-center">
                     <button class="gradient-gold text-black px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all" onclick="showPage('contacto')">
                         Consulta tu Diseño
                     </button>
@@ -475,6 +694,16 @@
         </div>
     </div>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="relative">
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-2xl hover:text-gold transition-colors z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="lightboxImg" src="" alt="Imagen ampliada" class="rounded-lg">
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-black py-8 border-t border-gold">
         <div class="container mx-auto px-4 text-center">
@@ -582,6 +811,16 @@
         function closeWhatsAppModal() {
             document.getElementById('whatsappModal').classList.remove('show');
         }
+
+        // Lightbox functionality
+        function openLightbox(imageSrc) {
+            document.getElementById('lightboxImg').src = imageSrc;
+            document.getElementById('lightbox').classList.add('show');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('show');
+        }
         
         // Quick WhatsApp form
         document.getElementById('quickWhatsAppForm').addEventListener('submit', function(e) {
@@ -621,16 +860,21 @@
             window.open(whatsappUrl, '_blank');
         });
         
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('whatsappModal');
-            if (event.target === modal) {
+            const whatsappModal = document.getElementById('whatsappModal');
+            const lightbox = document.getElementById('lightbox');
+            
+            if (event.target === whatsappModal) {
                 closeWhatsAppModal();
+            }
+            if (event.target === lightbox) {
+                closeLightbox();
             }
         }
         
         // Set minimum date to today
         document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c2b3bc52b1dd78',t:'MTc1NzM3OTEzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c2f958a53d6d5c',t:'MTc1NzM4MTk4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
